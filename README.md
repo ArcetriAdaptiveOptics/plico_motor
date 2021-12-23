@@ -3,7 +3,7 @@ client of a motor controlled under the plico environment
 
 
  ![Python package](https://github.com/ArcetriAdaptiveOptics/plico_motor/workflows/Python%20package/badge.svg)
- [![codecov](https://codecov.io/gh/ArcetriAdaptiveOptics/plico_motor/branch/master/graph/badge.svg?token=GTDOW6IWDE)](https://codecov.io/gh/ArcetriAdaptiveOptics/plico_motor)
+ [![codecov](https://codecov.io/gh/ArcetriAdaptiveOptics/plico_motor/branch/main/graph/badge.svg?token=ApWOrs49uw)](https://codecov.io/gh/ArcetriAdaptiveOptics/plico_motor)
  [![Documentation Status](https://readthedocs.org/projects/plico_motor/badge/?version=latest)](https://plico_motor.readthedocs.io/en/latest/?badge=latest)
  [![PyPI version][pypiversion]][pypiversionlink]
 
