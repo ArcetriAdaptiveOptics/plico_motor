@@ -2,16 +2,7 @@ import abc
 from six import with_metaclass
 from plico.utils.decorator import returnsNone, returns, returnsForExample
 from plico_motor.types.motor_status import MotorStatus
-
-
-class SnapshotEntry(object):
-    MOTOR_NAME = 'NAME'
-    POSITION = "POS"
-    STEPS_PER_SI_UNITS = 'SI2STEPS'
-    WAS_HOMED = 'WASHOMED'
-    MOTOR_TYPE = 'TYPE'
-    IS_MOVING = 'ISMOVING'
-    LAST_COMMANDED_POSITION = 'LASTCMD'
+from plico_motor.client.snapshot_entry import SnapshotEntry
 
 
 class AbstractMotorClient(with_metaclass(abc.ABCMeta, object)):
