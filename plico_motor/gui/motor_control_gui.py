@@ -30,7 +30,6 @@ class Runner(object):
             except Exception as e:
                 gui.pos = str(e)
 
-
         self.gui = Gui(
              [  'Pos:'     , 'pos'       , _       ],
              [ ['Move to'] , '__nstepsto__', 'steps' ],
