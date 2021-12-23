@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from plico_motor.gui.camera_control_gui import Runner
+from plico_motor.gui.motor_control_gui import Runner
 
 
 def main():
