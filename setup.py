@@ -11,7 +11,7 @@ URL = 'https://github.com/ArcetriAdaptiveOptics/plico_motor'
 EMAIL = 'lorenzo.busoni@inaf.it'
 AUTHOR = 'Lorenzo Busoni, Alfio Puglisi'
 LICENSE = 'MIT'
-KEYWORDS = 'plico, motor, picomotor, laboratory, instrumentation control',
+KEYWORDS = 'plico, motor, picomotor, laboratory, instrumentation control'
 
 here = os.path.abspath(os.path.dirname(__file__))
 # Load the package's __version__.py module as a dictionary.
@@ -73,7 +73,6 @@ setup(name=NAME,
       license=LICENSE,
       keywords=KEYWORDS,
       packages=['plico_motor',
-                'plico_motor.calibration',
                 'plico_motor.client',
                 'plico_motor.gui',
                 'plico_motor.types',

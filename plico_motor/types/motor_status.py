@@ -1,4 +1,4 @@
-from plico_motor.client.abstract_motor_client import SnapshotEntry
+#from plico_motor.client.abstract_motor_client import SnapshotEntry
 
 
 class MotorStatus(object):
@@ -23,12 +23,12 @@ class MotorStatus(object):
         self.is_moving = is_moving
         self.last_commanded_position = last_commanded_position
 
-    def as_dict(self):
-        dicto = {}
-        dicto[SnapshotEntry.MOTOR_NAME] = self.name
-        dicto[SnapshotEntry.POSITION] = self.position
-        dicto[SnapshotEntry.STEPS_PER_SI_UNITS] = self.steps_per_SI_unit
-        dicto[SnapshotEntry.WAS_HOMED] = self.was_homed
-        dicto[SnapshotEntry.MOTOR_TYPE] = self.motor_type
-        dicto[SnapshotEntry.IS_MOVING] = self.is_moving
-        dicto[SnapshotEntry.LAST_COMMANDED_POSITION] = self.last_commanded_position
+#    def as_dict(self):
+#        dicto = {}
+#        dicto[SnapshotEntry.MOTOR_NAME] = self.name
+#        dicto[SnapshotEntry.POSITION] = self.position
+#        dicto[SnapshotEntry.STEPS_PER_SI_UNITS] = self.steps_per_SI_unit
+#        dicto[SnapshotEntry.WAS_HOMED] = self.was_homed
+#        dicto[SnapshotEntry.MOTOR_TYPE] = self.motor_type
+#        dicto[SnapshotEntry.IS_MOVING] = self.is_moving
+#        dicto[SnapshotEntry.LAST_COMMANDED_POSITION] = self.last_commanded_position
