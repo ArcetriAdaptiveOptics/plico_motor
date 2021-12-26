@@ -9,9 +9,7 @@ class Runner(object):
     def __init__(self):
         pass
 
-    def _setUp(self, argv):
-
-        host, port = argv
+    def _setUp(self, host, port):
         self._motor = plico_motor.motor(host, int(port))
         print(dir(self._motor))
 
@@ -41,7 +39,14 @@ class Runner(object):
         self.gui.timer_start(getstatus, 0.1)
 
     def run(self, argv):
-        self._setUp(argv)
+        host = 'localhost'
+        port = 7200
+        if len(argv) == 1:
+            host = argv[0]
+        if len(argv) == 2:
+            port = argv[1]
+
+        self._setUp(host, port)
         self.gui.run()
 
     def terminate(self, signal, frame):

@@ -88,6 +88,7 @@ setup(name=NAME,
       },
       install_requires=["plico>=0.18",
                         "numpy",
+                        "guietta"
                         ],
       include_package_data=True,
       test_suite='test',

@@ -4,7 +4,7 @@ from plico_motor.client.snapshot_entry import SnapshotEntry
 class MotorStatus(object):
 
     TYPE_LINEAR = 'linear'
-    TYPE_ROTATIVE = 'rotative'
+    TYPE_ROTARY = 'rotary'
 
     def __init__(self,
                  name,

@@ -11,7 +11,7 @@ class Test(unittest.TestCase):
             123,
             987654,
             False,
-            MotorStatus.TYPE_ROTATIVE,
+            MotorStatus.TYPE_ROTARY,
             True,
             333)
 
