@@ -1,52 +1,76 @@
 import sys
 
 import plico_motor
-from guietta import Gui, _
+from guietta import Gui, _, G
 
 
 class Runner(object):
 
     def __init__(self):
-        pass
+        self.motor = None
 
-    def _setUp(self, host, port):
-        self._motor = plico_motor.motor(host, int(port))
-        print(dir(self._motor))
+    def _setUp(self, host='localhost', port=7200, axis=1):
 
         def moveby(gui):
             nsteps = int(gui.nstepsby)
-            self._motor.move_by(nsteps)
+            if self.motor:
+                self.motor.move_by(nsteps)
 
         def moveto(gui):
             nsteps = int(gui.nstepsto)
-            self._motor.move_to(nsteps)
+            if self.motor:
+                self.motor.move_to(nsteps)
 
         def getstatus(gui):
             try:
-                gui.pos = self._motor.position()
-                gui.status = self._motor.status().as_dict()
+                if self.motor:
+                    gui.pos = self.motor.position()
+                    gui.status = self.motor.status().as_dict()
+                else:
+                    gui.pos = '---'
+                    gui.status = 'Not connected'
             except Exception as e:
                 gui.pos = str(e)
+                gui.status = 'Not connected'
 
-        self.gui = Gui(
+        def connect(gui):
+            host = gui.host
+            port = gui.port
+            axis = gui.axis
+            self.motor = plico_motor.motor(host, int(port), int(axis))
+
+        connection_gui = Gui(
+             [ 'Host:', '__host__' ],
+             [ 'Port:', '__port__' ],
+             [ 'Axis:', '__axis__' ],
+             [ ['Connect'] ]
+        )
+        connection_gui.host = host
+        connection_gui.port = port
+        connection_gui.axis = axis
+        connection_gui.Connect = connect
+
+        control_gui = Gui(
              [  'Pos:'     , 'pos'       , _       ],
              [ ['Move to'] , '__nstepsto__', 'steps' ],
              [ ['Move by'] , '__nstepsby__', 'steps' ],
              [ 'Status:'   , 'status'    , _       ]
         )
-        self.gui.Moveby = moveby
-        self.gui.Moveto = moveto
-        self.gui.timer_start(getstatus, 0.1)
+        control_gui.Moveby = moveby
+        control_gui.Moveto = moveto
+        control_gui.timer_start(getstatus, 0.1)
+
+        self.gui = Gui(
+             [ G('Connection') ],
+             [ G('Motor') ]
+        )
+
+        self.gui.Connection = connection_gui
+        self.gui.Motor = control_gui
+
 
     def run(self, argv):
-        host = 'localhost'
-        port = 7200
-        if len(argv) == 1:
-            host = argv[0]
-        if len(argv) == 2:
-            port = argv[1]
-
-        self._setUp(host, port)
+        self._setUp(*argv)
         self.gui.run()
 
     def terminate(self, signal, frame):

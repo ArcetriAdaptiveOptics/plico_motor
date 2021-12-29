@@ -13,7 +13,8 @@ class MotorStatus(object):
                  was_homed,
                  motor_type,
                  is_moving,
-                 last_commanded_position
+                 last_commanded_position,
+                 axisno,
                  ):
         self.name = name
         self.position = position
@@ -22,6 +23,7 @@ class MotorStatus(object):
         self.motor_type = motor_type
         self.is_moving = is_moving
         self.last_commanded_position = last_commanded_position
+        self.axisno = axisno
 
     def as_dict(self):
         dicto = {}
@@ -32,5 +34,6 @@ class MotorStatus(object):
         dicto[SnapshotEntry.MOTOR_TYPE] = self.motor_type
         dicto[SnapshotEntry.IS_MOVING] = self.is_moving
         dicto[SnapshotEntry.LAST_COMMANDED_POSITION] = self.last_commanded_position
+        dicto[SnapshotEntry.AXIS_NO] = self.axisno
         return dicto
 

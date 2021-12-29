@@ -12,7 +12,7 @@ def _getDefaultConfigFilePath():
 defaultConfigFilePath = _getDefaultConfigFilePath()
 
 
-def motor(hostname, port):
+def motor(hostname, port, axis):
 
     from plico_motor.client.motor_client import MotorClient
     from plico.rpc.zmq_remote_procedure_call import ZmqRemoteProcedureCall
@@ -22,4 +22,4 @@ def motor(hostname, port):
     rpc = ZmqRemoteProcedureCall()
     zmqPorts = ZmqPorts(hostname, port)
     sockets = Sockets(zmqPorts, rpc)
-    return MotorClient(rpc, sockets)
+    return MotorClient(rpc, sockets, axis)
