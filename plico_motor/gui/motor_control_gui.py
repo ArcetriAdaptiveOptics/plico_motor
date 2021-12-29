@@ -79,5 +79,5 @@ class Runner(object):
 
 if __name__ == '__main__':
     runner = Runner()
-    sys.exit(runner.run(argv[1:]))
+    sys.exit(runner.run(sys.argv[1:]))
 
