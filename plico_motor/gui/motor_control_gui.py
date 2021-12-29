@@ -9,7 +9,7 @@ class Runner(object):
     def __init__(self):
         self.motor = None
 
-    def _setUp(self, argv):
+    def _setUp(self, host='localhost', port=7200, axis=1):
 
         def moveby(gui):
             nsteps = int(gui.nstepsby)
@@ -45,9 +45,9 @@ class Runner(object):
              [ 'Axis:', '__axis__' ],
              [ ['Connect'] ]
         )
-        connection_gui.host = 'localhost'
-        connection_gui.port = '7200'
-        connection_gui.axis = '1'
+        connection_gui.host = host
+        connection_gui.port = port
+        connection_gui.axis = axis
         connection_gui.Connect = connect
 
         control_gui = Gui(
@@ -70,7 +70,7 @@ class Runner(object):
 
 
     def run(self, argv):
-        self._setUp(argv)
+        self._setUp(*argv)
         self.gui.run()
 
     def terminate(self, signal, frame):
@@ -79,5 +79,5 @@ class Runner(object):
 
 if __name__ == '__main__':
     runner = Runner()
-    sys.exit(runner.run(sys.argv[1:]))
+    sys.exit(runner.run(argv[1:]))
 

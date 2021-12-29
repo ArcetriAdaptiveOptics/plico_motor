@@ -1,5 +1,2 @@
 include README.md LICENSE
 recursive-include test *
-recursive-include pysilico/conf *
-recursive-include pysilico/calib *
-include pysilico/gui/*.ui
