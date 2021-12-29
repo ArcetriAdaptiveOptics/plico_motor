@@ -13,7 +13,8 @@ class Test(unittest.TestCase):
             False,
             MotorStatus.TYPE_ROTARY,
             True,
-            333)
+            333,
+            1)
 
     def test_as_dict(self):
         wanted_keys = (
@@ -23,7 +24,8 @@ class Test(unittest.TestCase):
             SnapshotEntry.WAS_HOMED,
             SnapshotEntry.MOTOR_TYPE,
             SnapshotEntry.IS_MOVING,
-            SnapshotEntry.LAST_COMMANDED_POSITION)
+            SnapshotEntry.LAST_COMMANDED_POSITION,
+            SnapshotEntry.AXIS_NO)
         got = self.ms.as_dict()
         self.assertCountEqual(got.keys(), wanted_keys)
 
