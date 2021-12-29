@@ -7,3 +7,4 @@ class SnapshotEntry(object):
     MOTOR_TYPE = 'TYPE'
     IS_MOVING = 'ISMOVING'
     LAST_COMMANDED_POSITION = 'LASTCMD'
+    AXIS_NO = 'AXISNO'

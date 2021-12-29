@@ -17,13 +17,15 @@ class MotorClient(AbstractMotorClient,
 
     def __init__(self,
                  rpcHandler,
-                 sockets):
+                 sockets,
+                 axis=1):
         assert isinstance(rpcHandler, AbstractRemoteProcedureCall)
 
         self._rpcHandler = rpcHandler
         self._requestSocket = sockets.serverRequest()
         self._statusSocket = sockets.serverStatus()
         self._logger = Logger.of('Motor client')
+        self._axis = axis
         HackerableClient.__init__(self,
                                   self._rpcHandler,
                                   self._requestSocket,
@@ -38,7 +40,7 @@ class MotorClient(AbstractMotorClient,
     def status(self, timeout_in_sec=Timeout.GETTER):
         return self._rpcHandler.receivePickable(
             self._statusSocket,
-            timeout_in_sec)
+            timeout_in_sec)[self._axis-1]
 
     @override
     def snapshot(self,
@@ -54,7 +56,7 @@ class MotorClient(AbstractMotorClient,
         self._logger.notice("Homing")
         return self._rpcHandler.sendRequest(
             self._requestSocket, 'home',
-            [],
+            [self._axis],
             timeout=timeout_in_sec)
 
     @override
@@ -64,7 +66,7 @@ class MotorClient(AbstractMotorClient,
         self._logger.notice("Moving to %f" % position_in_steps)
         return self._rpcHandler.sendRequest(
             self._requestSocket, 'move_to',
-            [position_in_steps],
+            [self._axis, position_in_steps],
             timeout=timeout_in_sec)
 
     @override
@@ -74,7 +76,7 @@ class MotorClient(AbstractMotorClient,
         self._logger.notice("Moving by %f" % position_in_steps)
         return self._rpcHandler.sendRequest(
             self._requestSocket, 'move_by',
-            [position_in_steps],
+            [self._axis, position_in_steps],
             timeout=timeout_in_sec)
 
     @override
