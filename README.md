@@ -45,7 +45,7 @@ to be used to start the corresponding server.
 
 The plico_motor_server package installs also the client package.
 
-## On client
+### On client
 On the client machine
 
 ```
