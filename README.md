@@ -13,7 +13,7 @@ plico_motor is an application to control motors under the [plico][plico] environ
 [plico]: https://github.com/ArcetriAdaptiveOptics/plico
 
 
-## Installazion ##
+## Installation ##
 Note: it is recommended, before installing packages, to create a conda environment to work.
 
 ```
