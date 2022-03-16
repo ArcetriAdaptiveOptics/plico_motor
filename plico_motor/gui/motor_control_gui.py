@@ -1,7 +1,7 @@
 import sys
 
 import plico_motor
-from guietta import Gui, _, G
+from guietta import Gui, _, G, Exceptions
 
 
 class Runner(object):
@@ -20,6 +20,10 @@ class Runner(object):
             nsteps = int(gui.nstepsto)
             if self.motor:
                 self.motor.move_to(nsteps)
+
+        def home(gui):
+            if self.motor:
+                self.motor.home()
 
         def getstatus(gui):
             try:
@@ -51,13 +55,15 @@ class Runner(object):
         connection_gui.Connect = connect
 
         control_gui = Gui(
-             [  'Pos:'     , 'pos'       , _       ],
+             [  'Pos:'     , 'pos'         , 'steps' ],
              [ ['Move to'] , '__nstepsto__', 'steps' ],
              [ ['Move by'] , '__nstepsby__', 'steps' ],
-             [ 'Status:'   , 'status'    , _       ]
+             [ ['Home']    , _             , _       ],
+             [ 'Status:'   , 'status'      , _       ], exceptions=Exceptions.OFF
         )
         control_gui.Moveby = moveby
         control_gui.Moveto = moveto
+        control_gui.Home = home
         control_gui.timer_start(getstatus, 0.1)
 
         self.gui = Gui(
