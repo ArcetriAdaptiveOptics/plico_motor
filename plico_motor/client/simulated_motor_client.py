@@ -9,20 +9,30 @@ class SimulatedMotorClient(AbstractMotorClient):
     def __init__(self):
         self._name = 'mySimulatedMotor'
         self._position = 0
+        self._velocity = 0
         self._was_homed = False
         self._step_per_si_units = 123456
         self._type = MotorStatus.TYPE_LINEAR
         self._is_moving = False
         self._last_cmd = 0
+        self._axis_no = 1
 
     @override
     def position(self):
         return self._position
 
     @override
+    def velocity(self):
+        return self._velocity
+
+    @override
     def move_to(self, position_in_steps):
         self._position = position_in_steps
         self._last_cmd = self._position
+
+    @override
+    def set_velocity(self, velocity_in_steps_per_second):
+        self._velocity = velocity_in_steps_per_second
 
     @override
     def move_by(self, position_in_steps):
@@ -46,12 +56,13 @@ class SimulatedMotorClient(AbstractMotorClient):
         status = MotorStatus(
             self._name,
             self._position,
-            self._was_been_homed,
+            self._velocity,
             self._step_per_si_units,
             self._was_homed,
             self._type,
             self._is_moving,
-            self._last_cmd
+            self._last_cmd,
+            self._axis_no,
             )
         return status
 

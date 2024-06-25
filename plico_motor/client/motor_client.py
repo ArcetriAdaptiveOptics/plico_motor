@@ -83,3 +83,16 @@ class MotorClient(AbstractMotorClient,
     def position(self):
         return int(self.status().position)
 
+    @override
+    def set_velocity(self,
+                velocity_in_steps_per_second,
+                timeout_in_sec=Timeout.SETTER):
+        self._logger.notice("Setting velocity to %f" % velocity_in_steps_per_second)
+        return self._rpcHandler.sendRequest(
+            self._requestSocket, 'set_velocity',
+            [self._axis, velocity_in_steps_per_second],
+            timeout=timeout_in_sec)
+
+    @override
+    def velocity(self):
+        return int(self.status().velocity)
