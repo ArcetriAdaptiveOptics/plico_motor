@@ -22,6 +22,16 @@ class AbstractMotorClient(with_metaclass(abc.ABCMeta, object)):
         assert False
 
     @abc.abstractmethod
+    @returnsNone
+    def velocity(self):
+        assert False
+
+    @abc.abstractmethod
+    @returnsNone
+    def set_velocity(self, velocity_in_steps_per_second):
+        assert False
+
+    @abc.abstractmethod
     @returnsForExample({'MY_MOTOR.POS: 42'})
     def snapshot(self, prefix='MY_MOTOR'):
         assert False

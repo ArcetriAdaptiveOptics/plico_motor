@@ -2,6 +2,7 @@
 class SnapshotEntry(object):
     MOTOR_NAME = 'NAME'
     POSITION = "POS"
+    VELOCITY = "VELOCITY"
     STEPS_PER_SI_UNITS = 'SI2STEPS'
     WAS_HOMED = 'WASHOMED'
     MOTOR_TYPE = 'TYPE'
