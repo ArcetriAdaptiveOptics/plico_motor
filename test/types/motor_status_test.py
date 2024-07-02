@@ -9,6 +9,7 @@ class Test(unittest.TestCase):
         self.ms = MotorStatus(
             'pippo',
             123,
+            42.0,
             987654,
             False,
             MotorStatus.TYPE_ROTARY,
@@ -20,6 +21,7 @@ class Test(unittest.TestCase):
         wanted_keys = (
             SnapshotEntry.MOTOR_NAME,
             SnapshotEntry.POSITION,
+            SnapshotEntry.VELOCITY,
             SnapshotEntry.STEPS_PER_SI_UNITS,
             SnapshotEntry.WAS_HOMED,
             SnapshotEntry.MOTOR_TYPE,
