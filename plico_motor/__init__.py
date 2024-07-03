@@ -23,3 +23,13 @@ def motor(hostname, port, axis):
     zmqPorts = ZmqPorts(hostname, port)
     sockets = Sockets(zmqPorts, rpc)
     return MotorClient(rpc, sockets, axis)
+
+
+def list_motors(timeout_in_seconds=2):
+    from plico.utils.discovery_server import DiscoveryClient
+    return DiscoveryClient().run(timeout_in_seconds=timeout_in_seconds, filter={'server_type':'plico_motor'})
+
+def find(motor_name, axis, timeout_in_seconds=2):
+    from plico.utils.discovery_server import DiscoveryClient
+    server_info = DiscoveryClient().run(motor_name, timeout_in_seconds, filter={'server_type':'plico_motor'})
+    return motor(server_info.host, server_info.port, axis)
