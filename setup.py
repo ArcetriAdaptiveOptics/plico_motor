@@ -86,7 +86,7 @@ setup(name=NAME,
       package_data={
           'plico_motor': ['conf/plico_motor.conf'],
       },
-      install_requires=["plico>=0.18",
+      install_requires=["plico>=0.29",
                         "numpy",
                         "guietta"
                         ],
