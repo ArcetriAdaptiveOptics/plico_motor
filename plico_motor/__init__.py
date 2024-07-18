@@ -16,9 +16,9 @@ def _getDefaultConfigFilePath():
 defaultConfigFilePath= _getDefaultConfigFilePath()
 
 
-def motor(hostname, port):
-    '''Generic DeformableMirrorClient, kept for backward compatibility'''
-    return plico_client(MotorClient, hostname, port)
+def motor(hostname, port, axis):
+    '''Generic client, kept for backward compatibility'''
+    return plico_client(MotorClient, hostname, port, axis=axis)
 
 
 def list_motors(timeout_in_seconds=2):
