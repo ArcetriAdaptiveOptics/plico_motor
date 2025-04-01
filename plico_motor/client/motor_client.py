@@ -96,3 +96,25 @@ class MotorClient(AbstractMotorClient,
     @override
     def velocity(self):
         return int(self.status().velocity)
+
+    # --- Tunable Filter specific methods ---
+
+    @override
+    @returns(int)
+    def get_bandwidth_mode(self, timeout_in_sec=Timeout.GETTER):
+        self._logger.notice("Getting bandwidth mode")
+        # No axis argument needed for this device-level property
+        return self._rpcHandler.sendRequest(
+            self._requestSocket, 'get_bandwidth_mode',
+            [],  # No arguments
+            timeout=timeout_in_sec)
+
+    @override
+    def set_bandwidth_mode(self, mode,
+                           timeout_in_sec=Timeout.SETTER):
+        self._logger.notice(f"Setting bandwidth mode to {mode}")
+        # No axis argument needed
+        return self._rpcHandler.sendRequest(
+            self._requestSocket, 'set_bandwidth_mode',
+            [mode], # Pass the mode as an argument
+            timeout=timeout_in_sec)

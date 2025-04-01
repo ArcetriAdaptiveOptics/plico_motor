@@ -46,6 +46,19 @@ class AbstractMotorClient(with_metaclass(abc.ABCMeta, object)):
     def status(self):
         assert False
 
+    # Tunable Filter specific methods (added for KURIOS)
+    @abc.abstractmethod
+    @returns(int)
+    def get_bandwidth_mode(self):
+        '''Get the current bandwidth mode (if applicable).'''
+        assert False
+
+    @abc.abstractmethod
+    @returnsNone
+    def set_bandwidth_mode(self, mode):
+        '''Set the bandwidth mode (if applicable).'''
+        assert False
+
 # def _proposed_interface():
 #     x = plico_motor.client('ip', axis=0, port=port)
 #     x.home()
