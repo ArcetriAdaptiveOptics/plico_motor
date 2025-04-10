@@ -3,7 +3,7 @@ from plico_motor.client.abstract_motor_client import AbstractMotorClient
 from plico.rpc.abstract_remote_procedure_call import \
     AbstractRemoteProcedureCall
 from plico.utils.logger import Logger
-from plico.utils.decorator import override, returns
+from plico.utils.decorator import override, returns, returnsNone
 from plico.utils.snapshotable import Snapshotable
 from plico.client.serverinfo_client import ServerInfoClient
 from plico.client.hackerable_client import HackerableClient
@@ -96,3 +96,23 @@ class MotorClient(AbstractMotorClient,
     @override
     def velocity(self):
         return int(self.status().velocity)
+    
+    @override
+    @returns(int)
+    def get_bandwidth_mode(self,
+                       timeout_in_sec=Timeout.GETTER):
+        self._logger.debug("Getting bandwidth mode")
+        return self._rpcHandler.sendRequest(
+            self._requestSocket, 'get_bandwidth_mode',
+            [self._axis],
+            timeout=timeout_in_sec)
+
+    @override
+    @returnsNone
+    def set_bandwidth_mode(self, mode: int,
+                       timeout_in_sec=Timeout.SETTER):
+        self._logger.notice(f"Setting bandwidth mode to {mode}")
+        return self._rpcHandler.sendRequest(
+            self._requestSocket, 'set_bandwidth_mode',
+            [self._axis, mode],
+            timeout=timeout_in_sec)
