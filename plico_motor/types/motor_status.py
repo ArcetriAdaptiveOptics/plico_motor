@@ -16,6 +16,7 @@ class MotorStatus(object):
                  is_moving,
                  last_commanded_position,
                  axisno,
+                 parameters=None,
                  ):
         self.name = name
         self.position = position
@@ -26,6 +27,7 @@ class MotorStatus(object):
         self.is_moving = is_moving
         self.last_commanded_position = last_commanded_position
         self.axisno = axisno
+        self.parameters = parameters or {}
 
     def as_dict(self):
         dicto = {}

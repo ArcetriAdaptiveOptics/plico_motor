@@ -96,3 +96,12 @@ class MotorClient(AbstractMotorClient,
     @override
     def velocity(self):
         return int(self.status().velocity)
+
+    @override
+    def setParameter(self, name, value,
+                     timeoutSec=Timeout.SETTER):
+        assert isinstance(name, str)
+        return self._rpcHandler.sendRequest(
+            self._requestSocket, 'setParameter',
+            [name, value],
+            timeout=timeoutSec)

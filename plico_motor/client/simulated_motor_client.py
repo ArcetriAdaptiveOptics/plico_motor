@@ -51,6 +51,11 @@ class SimulatedMotorClient(AbstractMotorClient):
         return Snapshotable.prepend(prefix, status.as_dict())
 
     @override
+    def setParameter(self, name, value):
+        '''We don't have any'''
+        raise Exception('Parameter %s is not valid' % str(name))
+
+    @override
     @returns(MotorStatus)
     def status(self):
         status = MotorStatus(

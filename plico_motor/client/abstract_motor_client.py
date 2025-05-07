@@ -46,6 +46,11 @@ class AbstractMotorClient(with_metaclass(abc.ABCMeta, object)):
     def status(self):
         assert False
 
+    @abc.abstractmethod
+    def setParameter(self, name, value):
+        '''Device-specific parameters'''
+        assert False
+
 # def _proposed_interface():
 #     x = plico_motor.client('ip', axis=0, port=port)
 #     x.home()
