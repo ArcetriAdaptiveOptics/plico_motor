@@ -11,21 +11,21 @@ class Runner(object):
 
     def _setUp(self, host='localhost', port=7200, axis=1):
 
-        def moveby(gui):
+        def moveby(gui, *args, **kwargs):
             nsteps = int(gui.nstepsby)
             if self.motor:
                 self.motor.move_by(nsteps)
 
-        def moveto(gui):
+        def moveto(gui, *args, **kwargs):
             nsteps = int(gui.nstepsto)
             if self.motor:
                 self.motor.move_to(nsteps)
 
-        def home(gui):
+        def home(gui, *args, **kwargs):
             if self.motor:
                 self.motor.home()
 
-        def getstatus(gui):
+        def getstatus(gui, *args, **kwargs):
             try:
                 if self.motor:
                     gui.pos = self.motor.position()
@@ -37,7 +37,7 @@ class Runner(object):
                 gui.pos = str(e)
                 gui.status = 'Not connected'
 
-        def connect(gui):
+        def connect(gui, *args, **kwargs):
             host = gui.host
             port = gui.port
             axis = gui.axis

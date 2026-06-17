@@ -46,6 +46,32 @@ class AbstractMotorClient(with_metaclass(abc.ABCMeta, object)):
     def status(self):
         assert False
 
+    @abc.abstractmethod
+    @returns(int)
+    def get_bandwidth_mode(self):
+        """
+        Get the current bandwidth mode of the filter.
+
+        Returns
+        -------
+        int
+            Current bandwidth mode (e.g., 1=BLACK, 2=WIDE, 4=MEDIUM, 8=NARROW).
+        """
+        assert False
+
+    @abc.abstractmethod
+    @returnsNone
+    def set_bandwidth_mode(self, mode: int):
+        """
+        Set the bandwidth mode of the filter.
+
+        Parameters
+        ----------
+        mode : int
+            Desired bandwidth mode.
+        """
+        assert False
+
 # def _proposed_interface():
 #     x = plico_motor.client('ip', axis=0, port=port)
 #     x.home()
